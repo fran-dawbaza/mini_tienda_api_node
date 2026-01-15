@@ -35,11 +35,12 @@ router.get('/', verificarToken, async (req, res) => {
             JOIN usuarios ON pedidos.usuario_id = usuarios.id 
             ORDER BY fecha DESC
         `;
-        const [pedidos] = await pool.query(sql);
+        const [pedidos] = await con.query(sql);
         res.json(pedidos);
     } catch (error) {
         res.status(500).json({ error: "Error obteniendo pedidos" });
     }
 });
+
 
 export default router;
